@@ -1,0 +1,74 @@
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */button,hr,input{overflow:visible}progress,sub,sup{vertical-align:baseline}[type=checkbox],[type=radio],legend{box-sizing:border-box;padding:0}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}details,main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:ButtonText dotted 1px}fieldset{padding:.35em .75em .625em}legend{color:inherit;display:table;max-width:100%;white-space:normal}textarea{overflow:auto}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}[hidden],template{display:none}
+
+body {
+	font-family: 'Helvetica', sans-serif;
+	background: #fff;
+	color: #333;
+}
+
+.form {
+	max-width: 700px;
+	margin: 0 auto;
+}
+
+.input-form {
+	position: relative;
+	padding-top: 15px;
+}
+
+.input-form input {
+  	width: 100%;
+  	border: none;
+  	padding: 5px 0;
+  	border-bottom: solid 1px #ddd;
+}
+
+.input-form input:focus{
+  	outline: none; /* Para quitar la línea azul que se muestra cuando hacemos click */
+}
+
+.input-form input:focus + label, /* que se mueva hacia arriba cuándo hacemos focus sobre el label */
+.input-form input.non-empty + label{
+  	font-size: 0.6em;
+  	margin-top: -12px;
+}
+
+.input-form label {
+  	position: absolute;
+  	top:15px;
+  	left:0;
+  	pointer-events: none; /* para que no podamos seleccionar el label */
+  	width: 100%;
+  	transition: all 0.2s;
+}
+
+.input-form label::after{ /* Vamos a animar la barra inferior del label */
+  	position: absolute;
+  	content: "";
+  	width: 100%;
+  	left:0%;
+  	height: 1px;
+  	background-color:currentColor; /* variable que asimila el color del after al color del label */
+  	visibility: hidden;
+  	transform:scale(0);
+  	bottom: -30px;
+  	transition: transform 0.15s cubic-bezier(0.4, 0.0, 0.2, 1);
+  	transition-delay: 0.15s;
+}
+
+.input-form input:focus + label::after, 
+.input-form input.non-empty + label::after{
+  	transform: scale(1);
+  	visibility: visible;
+}
+
+.input-form input:valid + label{ /* cuándo el input sea valido el label que tenga al lado (el sibling) sea ver */  	color:#88b04b;
+}
+
+.input-form input:invalid + label{
+  	color:#c63349;
+}
+
+.input-form input:not(:focus):not(.non-empty) + label{
+  	color: #bbb;
+}
